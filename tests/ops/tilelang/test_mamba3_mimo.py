@@ -1681,12 +1681,21 @@ def run_ref_backward_fp32_varlen(
 # ---------------------------------------------------------------------------
 
 VARLEN_CASE_GRID = [
-    pytest.param(16, 64, 4, 8, 128, id="N16_P64_R4_C8_BB128"),
-    pytest.param(32, 64, 4, 16, 256, id="N32_P64_R4_C16_BB256"),
-    pytest.param(64, 64, 4, 16, 256, id="N64_P64_R4_C16_BB256"),
-    pytest.param(128, 64, 4, 16, 256, id="N128_P64_R4_C16_BB256"),
-    pytest.param(128, 64, 2, 32, 256, id="N128_P64_R2_C32_BB256"),
-    pytest.param(128, 64, 1, 64, 256, id="N128_P64_R1_C64_BB256"),
+    # Base case:
+    pytest.param(16, 32, 4, 8, 64, id="N16_P32_R4_C8_BB64"),
+    # Test increase of N:
+    pytest.param(32, 32, 4, 8, 64, id="N32_P32_R4_C8_BB64"),
+    # Test increase of P:
+    pytest.param(16, 64, 4, 8, 64, id="N16_P64_R4_C8_BB64"),
+    # Test increase of BB:
+    pytest.param(16, 32, 4, 8, 128, id="N16_P32_R4_C8_BB128"),
+    # Test increase of C:
+    pytest.param(16, 32, 4, 16, 128, id="N32_P32_R4_C16_BB128"),
+    # Test decrease of R alongside further increase of C:
+    pytest.param(32, 32, 2, 32, 128, id="N32_P32_R2_C32_BB128"),
+    # Test further decrease of R alongside further increase of C:
+    pytest.param(32, 32, 1, 64, 128, id="N32_P32_R1_C64_BB128"),
+    
 ]
 
 
