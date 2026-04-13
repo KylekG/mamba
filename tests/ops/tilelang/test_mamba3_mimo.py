@@ -1269,9 +1269,9 @@ def test_mamba_mimo_smoke_forward_backward(mods: SimpleNamespace) -> None:
         mimo_rank=4,
         nheads_qk=FIXED_G,
         nheads=FIXED_H,
-        headdim_qk=128,
+        headdim_qk=64,
         headdim_v=64,
-        chunk_size=16,
+        chunk_size=8,
         rotary_dim_divisor=FIXED_ROTARY_DIM_DIVISOR,
         device="cuda",
         dtype=FIXED_DTYPE,
@@ -1314,11 +1314,11 @@ def test_mamba_mimo_smoke_forward_backward_varlen(mods: SimpleNamespace) -> None
     correct output shape and all 14 leaf gradients are populated and finite.
     """
     import math
-    chunk_size = 16
+    chunk_size = 8
     mimo_rank = 4
     nheads_qk = FIXED_G
     nheads = FIXED_H
-    headdim_qk = 128
+    headdim_qk = 64
     headdim_v = 64
     rotary_dim_divisor = FIXED_ROTARY_DIM_DIVISOR
 
